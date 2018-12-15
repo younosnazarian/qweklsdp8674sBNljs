@@ -1,0 +1,19 @@
+title:             WELCOME!
+email:             younos.nazarian@gmail.com
+description:       Younos Nazarian, Network Expert&Trainer
+author:            Younos Nazarian
+baseurl:           "/JJ"
+url:               "http://younosnazarian.github.io"
+
+# Social Profiles
+twitter_username:  Younos
+github_username:   BlackrockDigital
+facebook_username: StartBootstrap
+
+# Build settings
+markdown:          kramdown
+paginate:          5
+paginate_path:     "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
