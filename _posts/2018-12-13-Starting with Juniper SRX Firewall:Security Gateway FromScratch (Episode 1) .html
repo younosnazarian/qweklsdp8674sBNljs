@@ -250,12 +250,15 @@ root@SRX# set host 192.168.100.204 any any
 <p>Finally, these commands will store authentication, auditing, and processes-related events respectively in different three files.</p>
 <pre style="background-color: #f4f6f8;"><code>[edit system syslog]
 root@SRX# set file Authentication authorization info 
+root@SRX# set file Authentication structured
 
 [edit system syslog]
 root@SRX# set file Audit interactive-commands any 
+root@SRX# set file Audit structured
 
 [edit system syslog]
 root@SRX# set file Processes daemon info
+root@SRX# set file Audit structured
 
 [edit system syslog]
 root@SRX# top 
