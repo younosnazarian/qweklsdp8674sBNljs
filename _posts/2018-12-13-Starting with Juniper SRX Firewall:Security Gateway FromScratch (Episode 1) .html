@@ -398,7 +398,7 @@ root@SRX# set system authentication-order password
 root@SRX# edit system login 
 
 [edit system login]
-root@SRX# set class Admins deny-configuration &quot;(system root-authentication)|(system login)&quot;
+root@SRX# set class Remote-Admins deny-configuration &quot;(system root-authentication)|(system login)&quot;
 
 [edit system login]
 root@SRX# set class Remote-Admins idle-timeout 10
