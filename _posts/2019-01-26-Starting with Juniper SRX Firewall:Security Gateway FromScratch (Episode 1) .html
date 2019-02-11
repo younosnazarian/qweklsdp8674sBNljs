@@ -119,6 +119,10 @@ Retype new password:
 root# commit
 commit complete
 
+[edit]
+root@SRX# show system root-authentication 
+encrypted-password &quot;$6$54lTjE7h$9LMJfCjEcrL0EJSIi7AQwveqqqJ8Yyk6G6vX.8EbyULMwYnEJaAiBtmdy8hFraDeumHN1qVcPxOq/3TmLEuac0&quot;; ## SECRET-DATA
+
 </code></pre>
 <p><em>NOTE: When you enter a clear text password, the Junos OS calculates the MD5 hash of the password and save the hashed version it. The word “encrypted” is not accurate.</em></p>
 <ul>
@@ -408,9 +412,6 @@ root@SRX# set class Remote-Admins login-alarms
 root@SRX# set class Remote-Admins permissions all
 
 [edit system login]
-root@SRX# set class Remote-Admins allow-commands &quot;ping|exit&quot;
-
-[edit system login]
 root@SRX# set class Remote-Admins deny-commands &quot;(set cli idle-timeout)|(request system software)|(request system zeroize)|(request chassis)|(start)&quot;
 
 [edit system login]
@@ -433,7 +434,7 @@ commit complete
     time-zone America/Los_Angeles;
     authentication-order [ radius password ];
     root-authentication {
-        encrypted-password &quot;$6$7zmIdYlm$jliwHiILg/OhC8cHkCZ8swk0hovyHnjZgmF73D2a5z2OdzWfutSZA0GNjt4nbEBPEqpZSDe2oh02Ph7Rx1Q7o/&quot;; ## SECRET-DATA
+        encrypted-password &quot;$6$54lTjE7h$9LMJfCjEcrL0EJSIi7AQwveqqqJ8Yyk6G6vX.8EbyULMwYnEJaAiBtmdy8hFraDeumHN1qVcPxOq/3TmLEuac0&quot;; ## SECRET-DATA
     }
     name-server {
         192.168.100.202;
@@ -454,7 +455,6 @@ commit complete
             idle-timeout 10;
             login-alarms;
             permissions all;
-            allow-commands &quot;ping|exit&quot;;
             deny-commands &quot;(set cli idle-timeout)|(request system software)|(request system zeroize)|(request chassis)|(start)&quot;;
             deny-configuration &quot;(system root-authentication)|(system login)&quot;;
         }
@@ -549,7 +549,7 @@ snmp {
 set system time-zone America/Los_Angeles
 set system authentication-order radius
 set system authentication-order password
-set system root-authentication encrypted-password &quot;$6$7zmIdYlm$jliwHiILg/OhC8cHkCZ8swk0hovyHnjZgmF73D2a5z2OdzWfutSZA0GNjt4nbEBPEqpZSDe2oh02Ph7Rx1Q7o/&quot;
+set system root-authentication encrypted-password &quot;$6$54lTjE7h$9LMJfCjEcrL0EJSIi7AQwveqqqJ8Yyk6G6vX.8EbyULMwYnEJaAiBtmdy8hFraDeumHN1qVcPxOq/3TmLEuac0&quot;
 set system name-server 192.168.100.202
 set system radius-server 192.168.100.203 secret &quot;$9$NYVsgGDkTz6DitO1IcSwY2aDiHkm&quot;
 set system login message &quot;         ==================================================================================\n\t|                             KRYPTOMESH SECURITY TEAM                             |\n\t| Unauthorized access to this system is forbidden and will be prosecuted by law.   |\n\t| By accessing this system, you agree that your actions may be monitored if        |\n\t| unauthorized usage is suspected.                                                 |\n\t ==================================================================================\n&quot;
@@ -561,7 +561,6 @@ set system login class Admins deny-configuration &quot;(system root-authenticati
 set system login class Remote-Admins idle-timeout 10
 set system login class Remote-Admins login-alarms
 set system login class Remote-Admins permissions all
-set system login class Remote-Admins allow-commands &quot;ping|exit&quot;
 set system login class Remote-Admins deny-commands &quot;(set cli idle-timeout)|(request system software)|(request system zeroize)|(request chassis)|(start)&quot;
 set system login class Remote-Admins deny-configuration &quot;(system root-authentication)|(system login)&quot;
 set system login user Remote-Admins uid 2002
