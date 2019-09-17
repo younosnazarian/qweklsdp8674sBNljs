@@ -5,6 +5,10 @@
   <script>
   tinymce.init({
     selector: '#mytextarea'
+    menu: {
+    view: {title: 'Happy', items: 'code'}
+    },
+    plugins: 'code'  // required by the code menu item
   });
   </script>
 </head>
