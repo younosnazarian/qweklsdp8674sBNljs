@@ -4,84 +4,19 @@
   <script src='https://cdn.tiny.cloud/1/qyq27vh3wt8luz8gbqhrcj7jtsb0pq1ao2y9dyh73w4f57xh/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
   <script>
 tinymce.init({
-        selector: "textarea",
-        plugins: [
-                "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
-                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
-        ],
-
-        toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
-        toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor",
-        toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
-
-        menubar: false,
-        toolbar_items_size: 'small',
-
-        style_formats: [
-                {title: 'Bold text', inline: 'b'},
-                {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-                {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-                {title: 'Example 1', inline: 'span', classes: 'example1'},
-                {title: 'Example 2', inline: 'span', classes: 'example2'},
-                {title: 'Table styles'},
-                {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-        ],
-
-        templates: [
-                {title: 'Test template 1', content: 'Test 1'},
-                {title: 'Test template 2', content: 'Test 2'}
-        ]
+  selector: 'textarea',  // change this value according to your HTML
+  plugins: 'code image link lists advlist fullscreen media save anchor unlink',  // required by the code menu item
+  toolbar1: 'undo redo fullscreen | save | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | fontsizeselect',
+  toolbar2: 'link unlink anchor image media code'
 });
-</script>
-
+  </script>
 </head>
 
-<body >
-<!-- Thanks to http://www.dreamincode.net/forums/topic/9866-textarea-editor for the php part -->
-
-<?php
-$file = "tinymce_save";
-$save_file = $_POST['save_file'];  
-$savecontent = $_POST['savecontent'];
-?>
-
-<?php
-$loadcontent = $file.".php";
-if (!is_writable($loadcontent))
-echo 'error';
-if($save_file) {
-$savecontent = stripslashes($savecontent);
-$fp = @fopen($loadcontent, "w");
-if ($fp) {
-echo 'written';
-fwrite($fp, $savecontent);
-fclose($fp);
-}
-}
-$fp = @fopen($loadcontent, "r");
-$loadcontent = fread($fp, filesize($loadcontent));
-$loadcontent = htmlspecialchars($loadcontent);
-fclose($fp);
-?>
-
-<form style="position: absolute; left: 10px; top: 10px; right: 10px; " method="post" action="<?=$_SERVER['PHP_SELF']?>">
-<textarea  name="savecontent" id="savecontent" >
-<?=$loadcontent?>
-</textarea>
-
-<input type="submit" name="save_file" value="Save" style="position: absolute; top:2px; right: 2px">  
-</form>
-
-<script>
-function size_it()
-{
-//Specifying the height of the field where the edits are done. You may have to alter the pixel-value (method: trial and error)
-document.getElementById('savecontent').style.height=window.innerHeight-150+'px'
-}
-size_it()
-</script>
-
+<body>
+<h1>Write the article!</h1>
+  <form method="post">
+    <textarea id="mytextarea" name="mytextarea">Hi Younos!</textarea>
+  </form>
 </body>
 </html>
 
